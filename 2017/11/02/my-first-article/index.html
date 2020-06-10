@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+<!-- 
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+ -->
+
+<!-- 自定义logo -->
+<link rel="icon" type="image/png" sizes="32x32" href="/images/shell.png">
+
+
+
+
+
+
+  <meta name="keywords" content="Game,Linux,lua," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Don’t Starve Together服务器搭建(Linux) 本教程旨在为了解linux的玩家提供简易搭建教程。VPS-OS：ubuntu64  Klei官方英文搭建教程地址:Don’t Strave Together Dedicated Server">
+<meta name="keywords" content="Game,Linux,lua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Don&#39;t starve Together server 搭建">
+<meta property="og:url" content="http://yoursite.com/2017/11/02/my-first-article/index.html">
+<meta property="og:site_name" content="Shadow&#39;s blog">
+<meta property="og:description" content="Don’t Starve Together服务器搭建(Linux) 本教程旨在为了解linux的玩家提供简易搭建教程。VPS-OS：ubuntu64  Klei官方英文搭建教程地址:Don’t Strave Together Dedicated Server">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/11/02/my-first-article/dst.png">
+<meta property="og:updated_time" content="2020-06-10T14:47:27.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Don&#39;t starve Together server 搭建">
+<meta name="twitter:description" content="Don’t Starve Together服务器搭建(Linux) 本教程旨在为了解linux的玩家提供简易搭建教程。VPS-OS：ubuntu64  Klei官方英文搭建教程地址:Don’t Strave Together Dedicated Server">
+<meta name="twitter:image" content="http://yoursite.com/2017/11/02/my-first-article/dst.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/02/my-first-article/"/>
+
+
+
+
+
+  <title>Don't starve Together server 搭建 | Shadow's blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-127045215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shadow's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Just for fun!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block" style="border-radius: 5px 5px 10px 10px;">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/02/my-first-article/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/doc1.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shadow's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Don't starve Together server 搭建</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T14:20:45+00:00">
+                2017-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/Server/" itemprop="url" rel="index">
+                    <span itemprop="name">Server</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/02/my-first-article/#disqus_thread" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/02/my-first-article/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Don’t-Starve-Together服务器搭建-Linux"><a href="#Don’t-Starve-Together服务器搭建-Linux" class="headerlink" title="Don’t Starve Together服务器搭建(Linux)"></a>Don’t Starve Together服务器搭建(Linux)</h2><blockquote>
+<p>本教程旨在为了解linux的玩家提供简易搭建教程。VPS-OS：ubuntu64</p>
+</blockquote>
+<p>Klei官方英文搭建教程地址:<a href="http://dont-starve-game.wikia.com/wiki/Guides/Don%E2%80%99t_Starve_Together_Dedicated_Servers" target="_blank" rel="noopener">Don’t Strave Together Dedicated Server</a></p>
+<img src="/2017/11/02/my-first-article/dst.png" title="Don’t Starve Together">
+<a id="more"></a>
+<h4 id="1-配置服务器运行环境"><a href="#1-配置服务器运行环境" class="headerlink" title="1.配置服务器运行环境"></a>1.配置服务器运行环境</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update  <span class="comment">#更新源</span></span><br><span class="line">sudo apt-get install lib32gcc1 libcurl4-gnutls-dev:i386 screen <span class="comment">#必要的库和软件</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-安装steanm命令行平台和游戏包"><a href="#2-安装steanm命令行平台和游戏包" class="headerlink" title="2.安装steanm命令行平台和游戏包"></a>2.安装steanm命令行平台和游戏包</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/steamcmd   <span class="comment">#创建文件夹</span></span><br><span class="line"><span class="built_in">cd</span> ~/steamcmd   <span class="comment">#打开文件夹</span></span><br><span class="line">wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz   <span class="comment">#下载精简包</span></span><br><span class="line">tar -xvzf steamcmd_linux.tar.gz   <span class="comment">#解压包</span></span><br><span class="line">./steamcmd.sh +login anonymous +force_install_dir ~/dst +app_update 343050 validate +quit    <span class="comment">#匿名登录steamcmd，安装饥荒(DST)到~/dst</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-测试运行环境"><a href="#3-测试运行环境" class="headerlink" title="3.测试运行环境"></a>3.测试运行环境</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/dst/bin   <span class="comment">#打开启动命令文件夹</span></span><br><span class="line">./dontstarve_dedicated_server_nullrenderer   <span class="comment">#运行测试是否有错误</span></span><br></pre></td></tr></table></figure>
+<div class="note danger"><h6 id="一般会有下面这个错误出现："><a href="#一般会有下面这个错误出现：" class="headerlink" title="一般会有下面这个错误出现："></a>一般会有下面这个错误出现：</h6><p>libstdc++.so.6: version GLIBCXX_3.4.15 not found</p></div>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp ~/steamcmd/linux32/libstdc++.so.6 ~/dst/bin/lib32/   <span class="comment">#这是因为缺少库文件,输入此命令复制库文件解决</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="4-运行启动文件"><a href="#4-运行启动文件" class="headerlink" title="4.运行启动文件"></a>4.运行启动文件</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/dst/bin/</span><br><span class="line"><span class="built_in">echo</span> ./dontstarve_dedicated_server_nullrenderer -console -cluster MyDediServer -shard Master &gt; overworld.sh   <span class="comment">#地上世界启动脚本</span></span><br><span class="line"><span class="built_in">echo</span> ./dontstarve_dedicated_server_nullrenderer -console -cluster MyDediServer -shard Caves &gt; cave.sh   <span class="comment">#洞穴启动脚本</span></span><br><span class="line">sh overworld.sh   <span class="comment">#运行，等待几秒会提示你Your Server Will Not Start，这时按Ctrl+c终止进程</span></span><br><span class="line">sh cave.sh   <span class="comment">#运行，等待几秒会提示你Your Server Will Not Start，这时按Ctrl+c终止进程</span></span><br><span class="line">rm -rf ~/.klei/DoNotStarveTogether/Cluster_*   <span class="comment">#删除默认文件</span></span><br></pre></td></tr></table></figure>
+<div class="note success"><p>~/.klei/DoNotStarveTogether/MyDediServer  是默认配置目录，里面两个Master和caves分别是地上和洞穴配置目录</p></div>
+<h4 id="5-配置核心文件"><a href="#5-配置核心文件" class="headerlink" title="5.配置核心文件"></a>5.配置核心文件</h4><blockquote>
+<p>1.配置cluster_token.txt文件</p>
+</blockquote>
+<p>进入饥荒主页面，右下角点击Account图标，在打开的页面找到Generate Server Token 按钮，随便输入一个描述，会生成一个token,新建一个cluster_token.txt文件，复制进去，放在MyDediServer目录下。</p>
+<blockquote>
+<p>2.通用配置文件cluster.ini</p>
+</blockquote>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[MISC]</span></span><br><span class="line"><span class="attr">max_snapshots</span> = <span class="number">6</span>                  # 最大快照数，决定了可回滚的天数</span><br><span class="line"><span class="attr">console_enabled</span> = <span class="literal">true</span>             # 是否开启控制台</span><br><span class="line"> </span><br><span class="line"><span class="section">[SHARD]</span></span><br><span class="line"><span class="attr">shard_enabled</span> = <span class="literal">true</span>               # 服务器共享，要开启洞穴服务器的必须启用</span><br><span class="line"><span class="attr">bind_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span>                # 服务器监听的地址，当所有实例都运行在同一台机器时，可填写 <span class="number">127.0</span>.<span class="number">0.1</span>，会被 server .ini 覆盖</span><br><span class="line"><span class="attr">master_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span>              # master 服务器的 IP，针对非 master 服务器，若与 master 服务器运行在同一台机器时，可填写 <span class="number">127.0</span>.<span class="number">0.1</span>，会被 server.ini 覆盖</span><br><span class="line"><span class="attr">master_port</span> = <span class="number">10888</span>                # 监听 master 服务器的 UDP 端口，所有连接至 master 服务器的非 master 服务器必须相同</span><br><span class="line"><span class="attr">cluster_key</span> = dst                  # 连接密码，每台服务器必须相同，会被 server.ini 覆盖</span><br><span class="line"> </span><br><span class="line"><span class="section">[STEAM]</span></span><br><span class="line"><span class="attr">steam_group_only</span> = <span class="literal">false</span>           # 只允许某 Steam 组的成员加入</span><br><span class="line"><span class="attr">steam_group_id</span> = <span class="number">0</span>                 # 指定某个 Steam 组，填写组 ID</span><br><span class="line"><span class="attr">steam_group_admins</span> = <span class="literal">false</span>         # 开启后，Steam 组的管理员拥有服务器的管理权限</span><br><span class="line"> </span><br><span class="line"><span class="section">[NETWORK]</span></span><br><span class="line"><span class="attr">offline_server</span> = <span class="literal">false</span>             # 离线服务器，只有局域网用户能加入，并且所有依赖于 Steam 的任何功能都无效，比如说饰品掉落</span><br><span class="line"><span class="attr">tick_rate</span> = <span class="number">15</span>                     # 每秒通信次数，越高游戏体验越好，但是会加大服务器负担</span><br><span class="line"><span class="attr">whitelist_slots</span> = <span class="number">0</span>                # 为白名单用户保留的游戏位</span><br><span class="line"><span class="attr">cluster_password</span> =                 # 游戏密码，不设置表示无密码</span><br><span class="line"><span class="attr">cluster_name</span> = ttionya test        # 游戏房间名称</span><br><span class="line"><span class="attr">cluster_description</span> = description  # 游戏房间描述</span><br><span class="line"><span class="attr">lan_only_cluster</span> = <span class="literal">false</span>           # 局域网游戏</span><br><span class="line"><span class="attr">cluster_intention</span> = madness        # 游戏偏好，选项为 cooperative, competitive, social, or madness，没什么用</span><br><span class="line"> </span><br><span class="line"><span class="section">[GAMEPLAY]</span></span><br><span class="line"><span class="attr">max_players</span> = <span class="number">16</span>                   # 最大游戏人数</span><br><span class="line"><span class="attr">pvp</span> = <span class="literal">false</span>                         # 能不能攻击其他玩家</span><br><span class="line"><span class="attr">game_mode</span> = survival               # 游戏模式，可选 survival, endless or wilderness</span><br><span class="line"><span class="attr">pause_when_empty</span> = <span class="literal">true</span>           # 没人服务器暂停</span><br><span class="line"><span class="attr">vote_kick_enabled</span> = <span class="literal">true</span>          # 投票踢人</span><br></pre></td></tr></table></figure>
+<p>设置完毕保存为cluster.ini文件,放在MyDediServer下。</p>
+<blockquote>
+<p>3.地上和洞穴独立配置文件server.ini</p>
+</blockquote>
+<p>配置介绍：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[SHARD]</span></span><br><span class="line"><span class="attr">is_master</span> = <span class="literal">true</span> /<span class="literal">false</span>      # 是否是 master 服务器，只能存在一个 <span class="literal">true</span>，其他全是 <span class="literal">false</span></span><br><span class="line"><span class="attr">name</span> = caves                 # 针对非 master 服务器的名称</span><br><span class="line"> </span><br><span class="line"><span class="section">[STEAM]</span></span><br><span class="line"><span class="attr">authentication_port</span> = <span class="number">8766</span>   # Steam 用的端口，确保每个实例都不相同</span><br><span class="line"><span class="attr">master_server_port</span> = <span class="number">27016</span>   # Steam 用的端口，确保每个实例都不相同</span><br><span class="line"> </span><br><span class="line"><span class="section">[NETWORK]</span></span><br><span class="line"><span class="attr">server_port</span> = <span class="number">10999</span>          # 监听的 UDP 端口，只能介于 <span class="number">10998</span> - <span class="number">11018</span> 之间，确保每个实例都不相同</span><br></pre></td></tr></table></figure></p>
+<p>地上和洞穴配置具体在下方：<br>（地上）Master文件夹里的server.ini：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[SHARD]</span></span><br><span class="line"><span class="attr">is_master</span> = <span class="literal">true</span></span><br><span class="line"> </span><br><span class="line"><span class="section">[STEAM]</span></span><br><span class="line"><span class="attr">authentication_port</span> = <span class="number">12345</span></span><br><span class="line"><span class="attr">master_server_port</span> = <span class="number">12346</span></span><br><span class="line"> </span><br><span class="line"><span class="section">[NETWORK]</span></span><br><span class="line"><span class="attr">server_port</span> = <span class="number">10999</span></span><br></pre></td></tr></table></figure></p>
+<p>(洞穴)Caves文件夹里的server.ini:<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[SHARD]</span></span><br><span class="line"><span class="attr">is_master</span> = <span class="literal">false</span></span><br><span class="line"><span class="attr">name</span> = caves</span><br><span class="line"> </span><br><span class="line"><span class="section">[STEAM]</span></span><br><span class="line"><span class="attr">authentication_port</span> = <span class="number">12347</span></span><br><span class="line"><span class="attr">master_server_port</span> = <span class="number">12348</span></span><br><span class="line"> </span><br><span class="line"><span class="section">[NETWORK]</span></span><br><span class="line"><span class="attr">server_port</span> = <span class="number">11000</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>4.地上和洞穴的地图配置文件worldgenoverride.lua</p>
+</blockquote>
+<p>地上：<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">    override_enabled = <span class="literal">true</span>,</span><br><span class="line">    preset = <span class="string">"SURVIVAL_TOGETHER"</span>,       <span class="comment">-- "SURVIVAL_TOGETHER", "MOD_MISSING", "SURVIVAL_TOGETHER_CLASSIC", "SURVIVAL_DEFAULT_PLUS", "COMPLETE_DARKNESS", "DST_CAVE", "DST_CAVE_PLUS"</span></span><br><span class="line">    overrides = &#123;</span><br><span class="line">        <span class="comment">-- default is "never", "rare", "default", "often", "always" 下方值为default的几个调节的选项，从不，很少，默认，经常，总是</span></span><br><span class="line">  </span><br><span class="line">        <span class="comment">-- MISC</span></span><br><span class="line">        task_set = <span class="string">"default"</span>,           <span class="comment">-- "classic", "default", "cave_default"</span></span><br><span class="line">        start_location = <span class="string">"default"</span>,     <span class="comment">-- "caves", "default", "plus", "darkness"</span></span><br><span class="line">        world_size = <span class="string">"default"</span>,         <span class="comment">-- "small", "medium", "default", "huge"-世界大小</span></span><br><span class="line">        branching = <span class="string">"default"</span>,          <span class="comment">-- "never", "least", "default", "most" </span></span><br><span class="line">        loop = <span class="string">"default"</span>,               <span class="comment">-- "never", "default", "always"</span></span><br><span class="line">        autumn = <span class="string">"default"</span>,             <span class="comment">-- "noseason", "veryshortseason", "shortseason", "default", "longseason", "verylongseason", "random"</span></span><br><span class="line">        winter = <span class="string">"default"</span>,             <span class="comment">-- "noseason", "veryshortseason", "shortseason", "default", "longseason", "verylongseason", "random"</span></span><br><span class="line">        spring = <span class="string">"default"</span>,             <span class="comment">-- "noseason", "veryshortseason", "shortseason", "default", "longseason", "verylongseason", "random"</span></span><br><span class="line">        summer = <span class="string">"default"</span>,             <span class="comment">-- "noseason", "veryshortseason", "shortseason", "default", "longseason", "verylongseason", "random"</span></span><br><span class="line">        season_start = <span class="string">"default"</span>,       <span class="comment">-- "default", "winter", "spring", "summer", "autumnorspring", "winterorsummer", "random"</span></span><br><span class="line">        day = <span class="string">"default"</span>,                <span class="comment">-- "default", "longday", "longdusk", "longnight", "noday", "nodusk", "nonight", "onlyday", "onlydusk", "onlynight"</span></span><br><span class="line">        weather = <span class="string">"default"</span>,</span><br><span class="line">        earthquakes = <span class="string">"default"</span>, <span class="comment">--地震</span></span><br><span class="line">        lightning = <span class="string">"default"</span>, </span><br><span class="line">        frograin = <span class="string">"default"</span>, <span class="comment">--青蛙雨</span></span><br><span class="line">        wildfires = <span class="string">"default"</span>, <span class="comment">--火灾</span></span><br><span class="line">        touchstone = <span class="string">"default"</span>,</span><br><span class="line">        regrowth = <span class="string">"default"</span>,           <span class="comment">-- "veryslow", "slow", "default", "fast", "veryfast"</span></span><br><span class="line">        cavelight = <span class="string">"default"</span>,          <span class="comment">-- "veryslow", "slow", "default", "fast", "veryfast"</span></span><br><span class="line">        boons = <span class="string">"default"</span>,</span><br><span class="line">        prefabswaps_start = <span class="string">"default"</span>,  <span class="comment">-- "classic", "default", "highly random"</span></span><br><span class="line">        prefabswaps = <span class="string">"default"</span>,        <span class="comment">-- "none", "few", "default", "many", "max"</span></span><br><span class="line">        specialevent = <span class="string">""</span>,  <span class="comment">-- 特殊节日，一般选填冬季盛宴 winters_feast</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">-- RESOURCES</span></span><br><span class="line">        flowers = <span class="string">"default"</span>,</span><br><span class="line">        grass = <span class="string">"default"</span>,</span><br><span class="line">        sapling = <span class="string">"default"</span>,</span><br><span class="line">        marshbush = <span class="string">"default"</span>,</span><br><span class="line">        tumbleweed = <span class="string">"default"</span>,</span><br><span class="line">        reeds = <span class="string">"default"</span>,</span><br><span class="line">        trees = <span class="string">"default"</span>,</span><br><span class="line">        flint = <span class="string">"default"</span>,</span><br><span class="line">        rock = <span class="string">"default"</span>,</span><br><span class="line">        rock_ice = <span class="string">"default"</span>,</span><br><span class="line">        meteorspawner = <span class="string">"default"</span>,</span><br><span class="line">        meteorshowers = <span class="string">"default"</span>,</span><br><span class="line">        mushtree = <span class="string">"default"</span>,</span><br><span class="line">        fern = <span class="string">"default"</span>,</span><br><span class="line">        flower_cave = <span class="string">"default"</span>,</span><br><span class="line">        wormlights = <span class="string">"default"</span>,</span><br><span class="line">  </span><br><span class="line">        <span class="comment">-- UNPREPARED</span></span><br><span class="line">        berrybush = <span class="string">"default"</span>, <span class="comment">--浆果</span></span><br><span class="line">        carrot = <span class="string">"default"</span>, <span class="comment">--萝卜</span></span><br><span class="line">        mushroom = <span class="string">"default"</span>, <span class="comment">--蘑菇</span></span><br><span class="line">        cactus = <span class="string">"default"</span>,</span><br><span class="line">        banana = <span class="string">"default"</span>,</span><br><span class="line">        lichen = <span class="string">"default"</span>,</span><br><span class="line">  </span><br><span class="line">        <span class="comment">-- ANIMALS</span></span><br><span class="line">        rabbits = <span class="string">"default"</span>,</span><br><span class="line">        moles = <span class="string">"default"</span>,</span><br><span class="line">        butterfly = <span class="string">"default"</span>,</span><br><span class="line">        birds = <span class="string">"default"</span>,</span><br><span class="line">        buzzard = <span class="string">"default"</span>,</span><br><span class="line">        catcoon = <span class="string">"default"</span>,</span><br><span class="line">        perd = <span class="string">"default"</span>,</span><br><span class="line">        pigs = <span class="string">"default"</span>, <span class="comment">--猪</span></span><br><span class="line">        lightninggoat = <span class="string">"default"</span>,</span><br><span class="line">        beefalo = <span class="string">"default"</span>,</span><br><span class="line">        beefaloheat = <span class="string">"default"</span>,</span><br><span class="line">        hunt = <span class="string">"default"</span>,</span><br><span class="line">        alternatehunt = <span class="string">"default"</span>,</span><br><span class="line">        penguins = <span class="string">"default"</span>,</span><br><span class="line">        cave_ponds = <span class="string">"default"</span>,</span><br><span class="line">        ponds = <span class="string">"default"</span>,</span><br><span class="line">        bees = <span class="string">"default"</span>,</span><br><span class="line">        angrybees = <span class="string">"default"</span>,</span><br><span class="line">        tallbirds = <span class="string">"default"</span>,</span><br><span class="line">        slurper = <span class="string">"default"</span>,</span><br><span class="line">        bunnymen = <span class="string">"default"</span>,</span><br><span class="line">        slurtles = <span class="string">"default"</span>,</span><br><span class="line">        rocky = <span class="string">"default"</span>,</span><br><span class="line">        monkey = <span class="string">"default"</span>, <span class="comment">--猴子</span></span><br><span class="line">  </span><br><span class="line">        <span class="comment">-- MONSTERS</span></span><br><span class="line">        spiders = <span class="string">"default"</span>, <span class="comment">--蜘蛛</span></span><br><span class="line">        cave_spiders = <span class="string">"default"</span>,</span><br><span class="line">        hounds = <span class="string">"default"</span>,</span><br><span class="line">        houndmound = <span class="string">"default"</span>, <span class="comment">--猎犬袭击</span></span><br><span class="line">        merm = <span class="string">"default"</span>,</span><br><span class="line">        tentacles = <span class="string">"default"</span>,</span><br><span class="line">        chess = <span class="string">"default"</span>, <span class="comment">--地上发条数量</span></span><br><span class="line">        lureplants = <span class="string">"default"</span>,</span><br><span class="line">        walrus = <span class="string">"default"</span>, </span><br><span class="line">        liefs = <span class="string">"default"</span>, <span class="comment">--树人频率</span></span><br><span class="line">        deciduousmonster = <span class="string">"default"</span>,</span><br><span class="line">        krampus = <span class="string">"default"</span>,</span><br><span class="line">        bearger = <span class="string">"default"</span>, <span class="comment">--熊大</span></span><br><span class="line">        deerclops = <span class="string">"default"</span>, <span class="comment">-- 巨鹿</span></span><br><span class="line">        goosemoose = <span class="string">"default"</span>, <span class="comment">-- 蠢鹅</span></span><br><span class="line">        dragonfly = <span class="string">"default"</span>, <span class="comment">--苍蝇</span></span><br><span class="line">        bats = <span class="string">"default"</span>,</span><br><span class="line">        fissure = <span class="string">"default"</span>,</span><br><span class="line">        worms = <span class="string">"default"</span>, <span class="comment">--蠕虫</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>洞穴：<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">    override_enabled = <span class="literal">true</span>,</span><br><span class="line">    preset = <span class="string">"DST_CAVE"</span>,                 <span class="comment">-- "SURVIVAL_TOGETHER", "MOD_MISSING", "SURVIVAL_TOGETHER_CLASSIC", "SURVIVAL_DEFAULT_PLUS", "COMPLETE_DARKNESS", "DST_CAVE", "DST_CAVE_PLUS"</span></span><br><span class="line">    overrides = &#123;</span><br><span class="line">        <span class="comment">-- defalut is "never", "rare", "default", "often", "always"</span></span><br><span class="line">  </span><br><span class="line">        <span class="comment">-- MISC</span></span><br><span class="line">        task_set = <span class="string">"cave_default"</span>,       <span class="comment">-- "classic", "default", "cave_default"</span></span><br><span class="line">        start_location = <span class="string">"default"</span>,      <span class="comment">-- "caves", "default", "plus", "darkness"</span></span><br><span class="line">        world_size = <span class="string">"default"</span>,          <span class="comment">-- "small", "medium", "default", "huge"</span></span><br><span class="line">        branching = <span class="string">"default"</span>,           <span class="comment">-- "never", "least", "default", "most"</span></span><br><span class="line">        loop = <span class="string">"default"</span>,                <span class="comment">-- "never", "default", "always"</span></span><br><span class="line">        autumn = <span class="string">"default"</span>,              <span class="comment">-- "noseason", "veryshortseason", "shortseason", "default", "longseason", "verylongseason", "random"</span></span><br><span class="line">        winter = <span class="string">"default"</span>,              <span class="comment">-- "noseason", "veryshortseason", "shortseason", "default", "longseason", "verylongseason", "random"</span></span><br><span class="line">        spring = <span class="string">"default"</span>,              <span class="comment">-- "noseason", "veryshortseason", "shortseason", "default", "longseason", "verylongseason", "random"</span></span><br><span class="line">        summer = <span class="string">"default"</span>,              <span class="comment">-- "noseason", "veryshortseason", "shortseason", "default", "longseason", "verylongseason", "random"</span></span><br><span class="line">        season_start = <span class="string">"default"</span>,        <span class="comment">-- "default", "winter", "spring", "summer", "autumnorspring", "winterorsummer", "random"</span></span><br><span class="line">        day = <span class="string">"default"</span>,                 <span class="comment">-- "default", "longday", "longdusk", "longnight", "noday", "nodusk", "nonight", "onlyday", "onlydusk", "onlynight"</span></span><br><span class="line">        weather = <span class="string">"default"</span>,</span><br><span class="line">        earthquakes = <span class="string">"default"</span>,</span><br><span class="line">        lightning = <span class="string">"default"</span>,</span><br><span class="line">        frograin = <span class="string">"default"</span>,</span><br><span class="line">        wildfires = <span class="string">"default"</span>,</span><br><span class="line">        touchstone = <span class="string">"default"</span>,</span><br><span class="line">        regrowth = <span class="string">"default"</span>,            <span class="comment">-- "veryslow", "slow", "default", "fast", "veryfast"</span></span><br><span class="line">        cavelight = <span class="string">"default"</span>,           <span class="comment">-- "veryslow", "slow", "default", "fast", "veryfast"</span></span><br><span class="line">        boons = <span class="string">"default"</span>,</span><br><span class="line">        prefabswaps_start = <span class="string">"default"</span>,   <span class="comment">-- "classic", "default", "highly random"</span></span><br><span class="line">        prefabswaps = <span class="string">"default"</span>,         <span class="comment">-- "none", "few", "default", "many", "max"</span></span><br><span class="line">  </span><br><span class="line">        <span class="comment">-- RESOURCES</span></span><br><span class="line">        flowers = <span class="string">"default"</span>,</span><br><span class="line">        grass = <span class="string">"default"</span>,</span><br><span class="line">        sapling = <span class="string">"default"</span>,</span><br><span class="line">        marshbush = <span class="string">"default"</span>,</span><br><span class="line">        tumbleweed = <span class="string">"default"</span>,</span><br><span class="line">        reeds = <span class="string">"default"</span>,</span><br><span class="line">        trees = <span class="string">"default"</span>,</span><br><span class="line">        flint = <span class="string">"default"</span>,</span><br><span class="line">        rock = <span class="string">"default"</span>,</span><br><span class="line">        rock_ice = <span class="string">"default"</span>,</span><br><span class="line">        meteorspawner = <span class="string">"default"</span>,</span><br><span class="line">        meteorshowers = <span class="string">"default"</span>,</span><br><span class="line">        mushtree = <span class="string">"default"</span>,</span><br><span class="line">        fern = <span class="string">"default"</span>,</span><br><span class="line">        flower_cave = <span class="string">"default"</span>,</span><br><span class="line">        wormlights = <span class="string">"default"</span>,</span><br><span class="line">  </span><br><span class="line">        <span class="comment">-- UNPREPARED</span></span><br><span class="line">        berrybush = <span class="string">"default"</span>,</span><br><span class="line">        carrot = <span class="string">"default"</span>,</span><br><span class="line">        mushroom = <span class="string">"default"</span>,</span><br><span class="line">        cactus = <span class="string">"default"</span>,</span><br><span class="line">        banana = <span class="string">"default"</span>,</span><br><span class="line">        lichen = <span class="string">"default"</span>,</span><br><span class="line">  </span><br><span class="line">        <span class="comment">-- ANIMALS</span></span><br><span class="line">        rabbits = <span class="string">"default"</span>,</span><br><span class="line">        moles = <span class="string">"default"</span>,</span><br><span class="line">        butterfly = <span class="string">"default"</span>,</span><br><span class="line">        birds = <span class="string">"default"</span>,</span><br><span class="line">        buzzard = <span class="string">"default"</span>,</span><br><span class="line">        catcoon = <span class="string">"default"</span>,</span><br><span class="line">        perd = <span class="string">"default"</span>,</span><br><span class="line">        pigs = <span class="string">"default"</span>,</span><br><span class="line">        lightninggoat = <span class="string">"default"</span>,</span><br><span class="line">        beefalo = <span class="string">"default"</span>,</span><br><span class="line">        beefaloheat = <span class="string">"default"</span>,</span><br><span class="line">        hunt = <span class="string">"default"</span>,</span><br><span class="line">        alternatehunt = <span class="string">"default"</span>,</span><br><span class="line">        penguins = <span class="string">"default"</span>,</span><br><span class="line">        cave_ponds = <span class="string">"default"</span>,</span><br><span class="line">        ponds = <span class="string">"default"</span>,</span><br><span class="line">        bees = <span class="string">"default"</span>,</span><br><span class="line">        angrybees = <span class="string">"default"</span>,</span><br><span class="line">        tallbirds = <span class="string">"default"</span>,</span><br><span class="line">        slurper = <span class="string">"default"</span>,</span><br><span class="line">        bunnymen = <span class="string">"default"</span>,</span><br><span class="line">        slurtles = <span class="string">"default"</span>,</span><br><span class="line">        rocky = <span class="string">"default"</span>,</span><br><span class="line">        monkey = <span class="string">"default"</span>,</span><br><span class="line">  </span><br><span class="line">        <span class="comment">-- MONSTERS</span></span><br><span class="line">        spiders = <span class="string">"default"</span>,</span><br><span class="line">        cave_spiders = <span class="string">"default"</span>,</span><br><span class="line">        hounds = <span class="string">"default"</span>,</span><br><span class="line">        houndmound = <span class="string">"default"</span>,</span><br><span class="line">        merm = <span class="string">"default"</span>,</span><br><span class="line">        tentacles = <span class="string">"default"</span>,</span><br><span class="line">        chess = <span class="string">"default"</span>,</span><br><span class="line">        lureplants = <span class="string">"default"</span>,</span><br><span class="line">        walrus = <span class="string">"default"</span>,</span><br><span class="line">        liefs = <span class="string">"default"</span>,</span><br><span class="line">        deciduousmonster = <span class="string">"default"</span>,</span><br><span class="line">        krampus = <span class="string">"default"</span>,</span><br><span class="line">        bearger = <span class="string">"default"</span>,</span><br><span class="line">        deerclops = <span class="string">"default"</span>,</span><br><span class="line">        goosemoose = <span class="string">"default"</span>,</span><br><span class="line">        dragonfly = <span class="string">"default"</span>,</span><br><span class="line">        bats = <span class="string">"default"</span>,</span><br><span class="line">        fissure = <span class="string">"default"</span>,</span><br><span class="line">        worms = <span class="string">"default"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这时基本的已经完成，已经可以正常开服，但是没MOD怎么玩得下去嘞～<br>下面6，7，8为可选配置：</p>
+<h4 id="6-配置下载mod文件"><a href="#6-配置下载mod文件" class="headerlink" title="6. 配置下载mod文件"></a>6. 配置下载mod文件</h4> <div class="note info"><p>创建dedicated_server_mods_setup.lua文件：</p></div>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">--第一种是安装单独mod</span></span><br><span class="line">  <span class="comment">--ServerModSetup("mod的id")</span></span><br><span class="line">  <span class="comment">--第二种是安装mod合集</span></span><br><span class="line">  <span class="comment">--ServerModCollectionSetup("合集的id")</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--下面推荐几个常用的mod   </span></span><br><span class="line">ServerModSetup(<span class="string">"666155465"</span>) <span class="comment">--show me</span></span><br><span class="line">ServerModSetup(<span class="string">"375859599"</span>) <span class="comment">--health info</span></span><br><span class="line">ServerModSetup(<span class="string">"780009141"</span>) <span class="comment">--物品箱子提示</span></span><br><span class="line">ServerModSetup(<span class="string">"462434129"</span>) <span class="comment">--restart</span></span><br><span class="line">ServerModSetup(<span class="string">"367546858"</span>) <span class="comment">--服务端中文</span></span><br><span class="line">ServerModSetup(<span class="string">"841471368"</span>) <span class="comment">--防熊锁</span></span><br><span class="line">ServerModSetup(<span class="string">"378160973"</span>) <span class="comment">--全图定位</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">--饥荒的mod id查看：浏览器打开创意工坊任意要下载的mod页面，url处会有id=xxxxxxxx</span></span><br></pre></td></tr></table></figure>
+<p>保存在~/dst/mods/ 目录下，第一次开服时服务器会自动下载mod。</p>
+<h4 id="7-配置地上和洞穴的mod开关文件"><a href="#7-配置地上和洞穴的mod开关文件" class="headerlink" title="7. 配置地上和洞穴的mod开关文件"></a>7. 配置地上和洞穴的mod开关文件</h4><div class="note info"><p>MOD开关文件：modoverrides.lua</p></div>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">[<span class="string">"workshop-375859599"</span>] = &#123; enabled = <span class="literal">true</span> &#125;,<span class="comment">--healh info</span></span><br><span class="line">[<span class="string">"workshop-841471368"</span>] = &#123; enabled = <span class="literal">true</span> &#125;,<span class="comment">--fangxiongsuo</span></span><br><span class="line">[<span class="string">"workshop-378160973"</span>] = &#123; enabled = <span class="literal">true</span> &#125;,<span class="comment">--Global Positions</span></span><br><span class="line">[<span class="string">"workshop-462434129"</span>] = &#123; enabled = <span class="literal">true</span> &#125;,<span class="comment">--restart</span></span><br><span class="line">[<span class="string">"workshop-780009141"</span>] = &#123; enabled = <span class="literal">true</span> &#125;,<span class="comment">--Finder</span></span><br><span class="line">[<span class="string">"workshop-666155465"</span>] = &#123; enabled = <span class="literal">true</span> &#125;,<span class="comment">--Show Me</span></span><br><span class="line">[<span class="string">"workshop-367546858"</span>] = &#123;enabled = <span class="literal">true</span>&#125; <span class="comment">--chinese</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">--true表示启用，false表示禁用</span></span><br></pre></td></tr></table></figure>
+<p>Master和Caves 文件夹里各放一份。</p>
+<h5 id="8-配置管理员，黑名单等"><a href="#8-配置管理员，黑名单等" class="headerlink" title="8. 配置管理员，黑名单等"></a>8. 配置管理员，黑名单等</h5><blockquote>
+<p>创建adminlist.txt文件，填入用户id（KU_开头的），用户id可以在人员进入服务器后Master目录下的chat log文件里找到。</p>
+</blockquote>
+<blockquote>
+<p>黑白名单同理，分别创建blocklist.txt和whitelist.txt</p>
+</blockquote>
+<h4 id="最后你的服务器目录应该是这样："><a href="#最后你的服务器目录应该是这样：" class="headerlink" title="最后你的服务器目录应该是这样："></a>最后你的服务器目录应该是这样：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/home/ubuntu/.klei/DoNotStarveTogether/MyDediServer</span><br><span class="line">|</span><br><span class="line">|   adminlist.txt（/adminlist.txt）</span><br><span class="line">|   blocklist.txt（/blocklist.txt）</span><br><span class="line">|   cluster.ini（/cluster.ini）</span><br><span class="line">|   cluster_token.txt（/cluster_token.txt）</span><br><span class="line">|   whitelist.txt（/whitelist.txt）</span><br><span class="line">|</span><br><span class="line">|---Master</span><br><span class="line">|   |   modoverrides.lua（/Master/modoverrides.lua）</span><br><span class="line">|   |   server.ini（/Master/server.ini）</span><br><span class="line">|   |   worldgenoverride.lua（/Master/worldgenoverride.lua）</span><br><span class="line">|   </span><br><span class="line">|   </span><br><span class="line">|  </span><br><span class="line">|</span><br><span class="line">|---Caves</span><br><span class="line">    |   modoverrides.lua（/Caves/modoverrides.lua）</span><br><span class="line">    |   server.ini（/Caves/server.ini）</span><br><span class="line">    |   worldgenoverride.lua（/Caves/worldgenoverride.lua）</span><br><span class="line">   </span><br><span class="line"> </span><br><span class="line">/home/ubuntu/dst/mods</span><br><span class="line">|</span><br><span class="line">|   dedicated_server_mods_setup.lua（/dedicated_server_mods_setup.lua）</span><br></pre></td></tr></table></figure>
+<div class="note info"><p>最后一步：开服！</p></div>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动地上</span></span><br><span class="line"><span class="built_in">cd</span> ~/dst/bin</span><br><span class="line">screen sh ./overworld.sh  </span><br><span class="line">再按下Ctrl+A键,然后按C键创建另一个会话</span><br><span class="line"><span class="comment">#启动地下</span></span><br><span class="line"><span class="built_in">cd</span> ~/dst/bin </span><br><span class="line">screen sh ./cave.sh</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：饥荒版本更新时，服务器版本更新命令（先关闭游戏进程）：</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/steamcmd/steamcmd.sh +login anonymous +force_install_dir ~/dst +app_update 343050 validate +quit</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="———简单开服-amp-管理———"><a href="#———简单开服-amp-管理———" class="headerlink" title="———简单开服&amp;管理———-"></a>———简单开服&amp;管理———-</h4><p>其实这些命令都可以简化连续成自动化脚本来使用，，<br>于是我写了个综合示例 <a href="https://github.com/qwertyuiop6/DST-Server-Build" target="_blank" rel="noopener">DST server build</a><br>里面的go.sh和dst.sh即为开服脚本和管理脚本，详解–&gt; <a href="/2017/11/20/dst-shell/">使用简单shell脚本管理DST服务器</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="shadow 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Game/" rel="tag"># Game</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/lua/" rel="tag"># lua</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/14/MC/" rel="prev" title="MC服务器搭建">
+                MC服务器搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://shadow771.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/doc1.gif"
+                alt="shadow" />
+            
+              <p class="site-author-name" itemprop="name">shadow</p>
+              <p class="site-description motion-element" itemprop="description">code world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/qwertyuiop6" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:w771783057@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://steamcommunity.com/id/Butterfly6" target="_blank" title="Steam">
+                    
+                      <i class="fa fa-fw fa-steam-square"></i>Steam</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/a432e4021d3d4dc" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.ouyangjun.xyz/" title="ouyangjun's blog" target="_blank" style="">ouyangjun's blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=446732031&auto=0&height=66"></iframe>
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Don’t-Starve-Together服务器搭建-Linux"><span class="nav-number">1.</span> <span class="nav-text">Don’t Starve Together服务器搭建(Linux)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-配置服务器运行环境"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.配置服务器运行环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装steanm命令行平台和游戏包"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.安装steanm命令行平台和游戏包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-测试运行环境"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.测试运行环境</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#一般会有下面这个错误出现："><span class="nav-number">1.0.3.0.1.</span> <span class="nav-text">一般会有下面这个错误出现：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-运行启动文件"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.运行启动文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-配置核心文件"><span class="nav-number">1.0.5.</span> <span class="nav-text">5.配置核心文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-配置下载mod文件"><span class="nav-number">1.0.6.</span> <span class="nav-text">6. 配置下载mod文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-配置地上和洞穴的mod开关文件"><span class="nav-number">1.0.7.</span> <span class="nav-text">7. 配置地上和洞穴的mod开关文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-配置管理员，黑名单等"><span class="nav-number">1.0.7.1.</span> <span class="nav-text">8. 配置管理员，黑名单等</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后你的服务器目录应该是这样："><span class="nav-number">1.0.8.</span> <span class="nav-text">最后你的服务器目录应该是这样：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#———简单开服-amp-管理———"><span class="nav-number">1.0.9.</span> <span class="nav-text">———简单开服&amp;管理———-</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shadow</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://shadow771.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/11/02/my-first-article/';
+          this.page.identifier = '2017/11/02/my-first-article/';
+          this.page.title = 'Don\'t starve Together server 搭建';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+<script type="text/javascript">
+var a_idx = 0;
+jQuery(document).ready(function($) {
+  $("body").click(function(e) {
+    var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正" ,"法治", "爱国", "敬业", "诚信", "友善");
+    var $i = $("<span/>").text(a[a_idx]);
+    a_idx = (a_idx + 1) % a.length;
+    var x = e.pageX,
+    y = e.pageY;
+    $i.css({
+      "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+      "top": y - 20,
+      "left": x,
+      "position": "absolute",
+      "font-weight": "bold",
+      "color": "#ff6651"
+    });
+    $("body").append($i);
+    $i.animate({
+      "top": y - 180,
+      "opacity": 0
+    },
+    1500,
+    function() {
+      $i.remove();
+    });
+  });
+});
+</script>
+</html>
