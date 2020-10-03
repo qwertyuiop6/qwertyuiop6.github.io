@@ -107,7 +107,7 @@ theme: butterfly
 #   port: 22
 deploy:
   type: git
-  repo: <git@github.com:qwertyuiop6/qwertyuiop6.github.io.git>
+  repo: git@github.com:qwertyuiop6/qwertyuiop6.github.io.git
   branch: [master]
   message: [Github Action update]
 
