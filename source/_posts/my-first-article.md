@@ -1,8 +1,10 @@
 ---
-title: Don't starve Together server 搭建
-date: 2017-11-02 14:20:45
+title: Don't starve Together server 饥荒服务器搭建
+date: 2018-1-12 14:20:45
 tags: [Game,Linux,lua]
 categories: [Linux,Server]
+top_img: false
+cover: http://qhld2v6f0.hn-bkt.clouddn.com/dst.png
 ---
 ## Don't Starve Together服务器搭建(Linux)
 > 本教程旨在为了解linux的玩家提供简易搭建教程。VPS-OS：ubuntu64
@@ -17,7 +19,7 @@ Klei官方英文搭建教程地址:[Don't Strave Together Dedicated Server](http
 ```sh
  sudo apt-get update  #更新源
  sudo apt-get install lib32gcc1 libcurl4-gnutls-dev:i386 screen #必要的库和软件
- ```
+```
 #### 2.安装steanm命令行平台和游戏包
 ```sh
 mkdir ~/steamcmd   #创建文件夹

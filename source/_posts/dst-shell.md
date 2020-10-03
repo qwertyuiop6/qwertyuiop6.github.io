@@ -1,14 +1,17 @@
 ---
-title: 使用简单shell脚本管理DST服务器
-date: 2017-11-20 22:50:30
+title: Don't starve Together server 使用Linux Shell脚本管理DST饥荒服务器
+date: 2018-2-20 22:50:30
 tags: [Game,Linux,shell]
 categories: [Linux,Server]
+top_img: false
+cover: http://qhld2v6f0.hn-bkt.clouddn.com/dst.png
 ---
 
 ## DST饥荒游戏服务器搭建脚本
-上一次写了饥荒服务器的搭建教程，发现很多小伙伴表示都不会用啊，后来想想命令行操作确实有些繁琐，于是乎就想着把这些初始的游戏server安装配置自动化构建起来,那么什么最适合简单的服务器自动化命令操作呢？
+上一次写了个饥荒服务器的搭建教程，后来想想一系列命令行操作有些繁琐，于是乎就想着把这些初始的游戏server安装配置自动化构建起来,那么什么最适合简单的服务器自动化命令操作呢？
 在Linux服务器上这个答案显然是Shell脚本,(因为功能很少很简单还用不到python 233)
-对于大家伙来说当然越简单使用当然越好哇，这样想了想,然后就有了:
+对于大家来说当然越简单使用当然越好，这样想了想, 然后就写了个小脚本:
+
 > go.sh
 
 这个思想很简单，就是将更新服务器源到获取steamcmd到安装dst server版，建立文件夹等操作串联起来:
