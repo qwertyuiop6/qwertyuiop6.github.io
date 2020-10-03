@@ -1,1 +1,2 @@
-Hexo blog + git page
+Hexo blog + Git page
+
