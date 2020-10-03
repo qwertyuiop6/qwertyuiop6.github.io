@@ -108,8 +108,8 @@ theme: butterfly
 deploy:
   type: git
   repo: git@github.com:qwertyuiop6/qwertyuiop6.github.io.git
-  branch: [master]
-  message: [Github Action update]
+  branch: master
+  message: Github Action update
 
 theme_config:
   # Main menu navigation (導航目錄)
