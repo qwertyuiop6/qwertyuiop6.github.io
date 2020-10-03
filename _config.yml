@@ -99,12 +99,12 @@ theme: butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 
-deploy:
-  type: rsync
-  host: wtfk.world
-  user: root
-  root: /var/www/hexo
-  port: 22
+# deploy:
+#   type: rsync
+#   host: wtfk.world
+#   user: root
+#   root: /var/www/hexo
+#   port: 22
 
 theme_config:
   # Main menu navigation (導航目錄)
