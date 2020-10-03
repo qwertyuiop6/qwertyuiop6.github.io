@@ -105,6 +105,10 @@ theme: butterfly
 #   user: root
 #   root: /var/www/hexo
 #   port: 22
+type: git
+  repo: git@github.com:qwertyuiop6/qwertyuiop6.github.io.git
+  branch: [master]
+  message: [Github Action update]
 
 theme_config:
   # Main menu navigation (導航目錄)
